@@ -17,7 +17,7 @@ if (!isset($username, $password)) {
 }
 
 // Authentication
-$statement = $connection->prepare('SELECT username, password FROM users WHERE username = ?');
+$statement = $connection->prepare('SELECT id, username, password FROM users WHERE username = ?');
 
 if ($statement) {
     $statement->bind_param('s', $username);
@@ -27,7 +27,7 @@ if ($statement) {
 
     // To validate the user's password
     if ($statement->num_rows > 0) {
-        $statement->bind_result($fetchUsername, $fetchPassword);
+        $statement->bind_result($fetchId, $fetchUsername, $fetchPassword);
         $statement->fetch();
 
         if (password_verify($password, $fetchPassword)) {
@@ -35,7 +35,7 @@ if ($statement) {
 
             $_SESSION['logged_in'] = True;
             $_SESSION['name'] = $username;
-            $_SESSION['id'] = $id;
+            $_SESSION['id'] = $fetchId;
             $_SESSION['messages']['error'] = null;
             $_SESSION['messages']['success'] = "Successfully logged in!";
 
