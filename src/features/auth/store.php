@@ -3,7 +3,9 @@
 session_start();
 
 include "../../connect.php";
-include "../../util/validation.php";
+include "../../../util/token.php";
+include "../../../util/validation.php";
+include "../../../core/config.php";
 
 $connection = openConnection();
 
@@ -11,6 +13,7 @@ $connection = openConnection();
 $username = validateInput($_POST["username"]);
 $password = validateInput($_POST["password"]);
 $confirmPassword = validateInput($_POST["confirm_password"]);
+$_token = $_POST["_token"];
 
 if (!isset($username, $password, $confirmPassword)) {
     $_SESSION['messages']['error'] = 'Username, Password & Confirm Password field is required!';
@@ -21,6 +24,13 @@ if (!isset($username, $password, $confirmPassword)) {
 // Password and Confirm Password validation
 if ($password != $confirmPassword) {
     $_SESSION['messages']['error'] = 'Password & Confirm Password doesn\'t match!';
+    header("Location: create.php");
+    exit();
+}
+
+
+if (!validateToken($_token)) {
+    $_SESSION['messages']['error'] = 'Unknown token request source!';
     header("Location: create.php");
     exit();
 }

@@ -10,16 +10,14 @@ $personalNotes = getPersonalNotes($userId);
 
 <head>
     <?php
-    include "../../util/header.php";
+    include "../../../util/header.php";
     ?>
     <title>Dashboard</title>
 </head>
 
 <body>
-
-
     <?php
-    include "../../util/navbar.php";
+    include "../../../util/navbar.php";
     ?>
 
     <div class="mx-36 my-6">
@@ -43,7 +41,7 @@ $personalNotes = getPersonalNotes($userId);
         <div class="flex justify-between">
             <p class="text-2xl font-semibold">Your Notes</p>
             <a href="../notes/create.php"
-                class="bg-gray-900 text-white hover:text-blue-500 px-4 py-2 rounded-md font-semibold transition">+
+                class="ring-1 ring-gray-900 text-gray-900 hover:text-white hover:bg-gray-900 px-4 py-2 rounded-md font-semibold transition">+
                 Add
                 notes</a>
         </div>
@@ -51,11 +49,13 @@ $personalNotes = getPersonalNotes($userId);
             <?php
             foreach ($personalNotes as $note) {
                 ?>
-                <div
-                    class="bg-<?= $note['color'] ?>-200 p-4 border-l-4 border-<?= $note['color'] ?>-700 hover:scale-105 transition cursor-pointer">
-                    <h2 class="font-medium mb-4 text-<?= $note['color'] ?>-900"><?= $note['title'] ?></h2>
-                    <p class="text-<?= $note['color'] ?>-900"><?= $note['description'] ?></p>
-                </div>
+                <a href="show.php?id=<?= $note['id'] ?>">
+                    <div
+                        class="bg-<?= $note['color'] ?>-200 p-4 border-l-4 border-<?= $note['color'] ?>-700 hover:scale-105 transition cursor-pointer">
+                        <h2 class="font-medium mb-4 text-<?= $note['color'] ?>-900"><?= $note['title'] ?></h2>
+                        <p class="text-<?= $note['color'] ?>-900"><?= $note['description'] ?></p>
+                    </div>
+                </a>
                 <?php
             }
             ?>

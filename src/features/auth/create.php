@@ -1,12 +1,14 @@
 <?php
 session_start();
+include "../../../core/config.php";
+include "../../../util/token.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <?php
-    include "../../util/header.php";
+    include "../../../util/header.php";
     ?>
     <title>Document</title>
 </head>
@@ -16,6 +18,7 @@ session_start();
         <form action="store.php" method="POST">
             <div class="w-96 ring ring-1 ring-gray-300 rounded-lg p-4">
                 <h2 class="text-2xl font-semibold mb-3">Registration Form</h2>
+                <input type="hidden" name="_token" value="<?= createToken() ?>">
                 <div class="input-field flex flex-col gap-1 mb-2">
                     <label for="username" class="font-medium">Username <span class="text-red-500">*</span></label>
                     <input type="text" id="username" name="username"
@@ -36,10 +39,10 @@ session_start();
                         placeholder="Input confirm password..." required>
                 </div>
                 <?php
-                if (isset($_SESSION['error_register'])) {
+                if (isset($_SESSION['messages']['error'])) {
                     ?>
                     <div class="bg-red-100 rounded-sm text-red-500 border-l-4 border-red-500 px-4 py-2 mb-3">
-                        <?= $_SESSION['error_register'] ?>
+                        <?= $_SESSION['messages']['error'] ?>
                     </div>
                     <?php
                 }

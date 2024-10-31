@@ -3,7 +3,7 @@
 session_start();
 
 include '../../connect.php';
-include '../../util/validation.php';
+include '../../../util/validation.php';
 
 $connection = openConnection();
 
@@ -39,7 +39,7 @@ if ($statement) {
             $_SESSION['messages']['error'] = null;
             $_SESSION['messages']['success'] = "Successfully logged in!";
 
-            header("Location: ../dashboard");
+            header("Location: ../notes");
             exit();
         }
 
