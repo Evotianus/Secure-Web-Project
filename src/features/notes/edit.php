@@ -1,7 +1,5 @@
 <?php
 include "./process.php";
-include "../../../core/config.php";
-include "../../../util/token.php";
 
 $noteId = $_GET['id'];
 
@@ -29,7 +27,7 @@ $note = showNote($noteId);
                 <p class="text-2xl font-semibold mt-4">Edit note</p>
                 <form action="process.php" class="mt-4" method="POST">
                     <input type="hidden" name="_token" value="<?= createToken() ?>">
-                    <input type="hidden" name="noteId" value="<?= $noteId ?>">
+                    <input type="hidden" name="note_id" value="<?= $noteId ?>">
                     <div class="flex flex-col gap-1 mb-3">
                         <label for="title" class="font-semibold">Title</label>
                         <input type="text" id="title" name="title"

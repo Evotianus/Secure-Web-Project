@@ -18,7 +18,8 @@ session_start();
 
     <div class="mx-36 my-4">
         <p class="text-2xl font-semibold">Add new note</p>
-        <form action="store.php" class="mt-4" method="POST">
+        <form action="process.php" class="mt-4" method="POST">
+            <input type="hidden" name="_token" value="<?= createToken() ?>">
             <div class="flex flex-col gap-1 mb-3">
                 <label for="title" class="font-semibold">Title</label>
                 <input type="text" id="title" name="title"
@@ -44,7 +45,8 @@ session_start();
                     <option value="purple">Purple</option>
                 </select>
             </div>
-            <button class="bg-blue-500 rounded text-white px-4 py-2 font-semibold mt-2" type="submit">Submit</button>
+            <button class="bg-blue-500 rounded text-white px-4 py-2 font-semibold mt-2" type="submit"
+                name="store-note">Submit</button>
         </form>
     </div>
 </body>

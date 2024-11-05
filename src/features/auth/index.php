@@ -13,7 +13,7 @@ session_start();
 
 <body>
     <div class="h-screen flex justify-center items-center">
-        <form action="authenticate.php" method="POST">
+        <form action="process.php" method="POST">
             <div class="w-96 ring ring-1 ring-gray-300 rounded-lg p-4">
                 <h2 class="text-2xl font-semibold mb-3">Login Form</h2>
                 <div class="input-field flex flex-col gap-1 mb-2">
@@ -46,6 +46,7 @@ session_start();
                             </svg><?= $_SESSION['messages']['error'] ?>
                         </div>
                         <?php
+                        $_SESSION['messages']['error'] = null;
                     } else if (isset($_SESSION['messages']['success'])) {
                         ?>
                             <div class="bg-green-100 rounded-sm text-green-500 border-l-4 border-green-500 px-4 py-2 mb-3 flex">
@@ -58,12 +59,14 @@ session_start();
                                 </svg>
                             <?= $_SESSION['messages']['success'] ?>
                             </div>
-                        <?php
+                            <?php
+                            $_SESSION['messages']['success'] = null;
                     }
                 }
                 ?>
                 <button
-                    class="bg-gray-900 rounded-md w-full py-2 text-white font-semibold hover:text-blue-500 transition">Submit</button>
+                    class="bg-gray-900 rounded-md w-full py-2 text-white font-semibold hover:text-blue-500 transition"
+                    type="submit" name="authenticate-user">Submit</button>
                 <p class="text-center mt-2">Doesn't have an account yet? <a href="create.php"
                         class="text-blue-500 font-semibold">Register</a></p>
             </div>

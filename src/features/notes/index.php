@@ -51,9 +51,9 @@ $personalNotes = getPersonalNotes($userId);
                 ?>
                 <a href="show.php?id=<?= $note['id'] ?>">
                     <div
-                        class="bg-<?= $note['color'] ?>-200 p-4 border-l-4 border-<?= $note['color'] ?>-700 hover:scale-105 transition cursor-pointer">
+                        class="bg-<?= $note['color'] ?>-200 p-4 border-l-4 border-<?= $note['color'] ?>-700 hover:scale-105 transition cursor-pointer h-full">
                         <h2 class="font-medium mb-4 text-<?= $note['color'] ?>-900"><?= $note['title'] ?></h2>
-                        <p class="text-<?= $note['color'] ?>-900"><?= $note['description'] ?></p>
+                        <p class="text-<?= $note['color'] ?>-900 break-words"><?= $note['description'] ?></p>
                     </div>
                 </a>
                 <?php

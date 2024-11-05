@@ -15,7 +15,7 @@ include "../../../util/token.php";
 
 <body>
     <div class="h-screen flex justify-center items-center">
-        <form action="store.php" method="POST">
+        <form action="process.php" method="POST">
             <div class="w-96 ring ring-1 ring-gray-300 rounded-lg p-4">
                 <h2 class="text-2xl font-semibold mb-3">Registration Form</h2>
                 <input type="hidden" name="_token" value="<?= createToken() ?>">
@@ -48,7 +48,8 @@ include "../../../util/token.php";
                 }
                 ?>
                 <button
-                    class="bg-gray-900 rounded-md w-full py-2 text-white font-semibold hover:text-blue-500 transition">Submit</button>
+                    class="bg-gray-900 rounded-md w-full py-2 text-white font-semibold hover:text-blue-500 transition"
+                    type="submit" name="register-user">Submit</button>
 
                 <p class="text-center mt-2">Already have an account? <a href="index.php"
                         class="text-blue-500 font-semibold">Login</a></p>
