@@ -75,8 +75,13 @@ function showNote($noteId)
     error('Something went wrong!');
 }
 
-function storeNote($connection, $title, $description, $userId, $color, $_token)
+function storeNote($connection, $title, $description, $color, $userId, $_token)
 {
+    if (empty($title) || empty($description) || empty($color)) {
+        echo $title . ' - ' . $description . ' - ' . $color;
+        error('All field must be filled!');
+    }
+
     if (!validateToken($_token)) {
         error('Unknown request source!');
     }
@@ -91,7 +96,7 @@ function storeNote($connection, $title, $description, $userId, $color, $_token)
 
         header('Location: ./');
 
-        success('Successfully update note!');
+        success('Successfully added note!');
     }
 
     error('Something went wrong!');
@@ -100,6 +105,7 @@ function storeNote($connection, $title, $description, $userId, $color, $_token)
 function updateNote($connection, $noteId, $title, $description, $color, $userId, $_token)
 {
     if (empty($title) || empty($description) || empty($color)) {
+        echo $title . ' - ' . $description . ' - ' . $color;
         error('All field must be filled!');
     }
     if (!validateToken($_token)) {
@@ -190,6 +196,7 @@ function deleteNote($connection, $noteId, $userId, $_token)
 }
 
 if (isset($_POST['store-note'])) {
+    echo "woi";
     $title = validateInput($_POST['title']);
     $description = validateInput($_POST['description']);
     $color = validateInput($_POST['color']);
