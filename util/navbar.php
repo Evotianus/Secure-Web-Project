@@ -1,6 +1,6 @@
 <nav class="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
     <div class="flex flex-wrap justify-between items-center justify-between mx-32 p-4">
-        <a href="/secure-web-project/src/features/notes" class="flex items-center space-x-3 rtl:space-x-reverse">
+        <a href="./src/features/notes" class="flex items-center space-x-3 rtl:space-x-reverse">
             <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Simple Notes App</span>
         </a>
         <button data-collapse-toggle="navbar-dropdown" type="button"
